@@ -1,2 +1,8 @@
 # Assignment2
-Game of Life with Matthew Parnham
+GAME OF LIFE
+
+Tristan Chilvers
+2288893
+chilvers@chapman.edu
+
+Matthew Parnham
