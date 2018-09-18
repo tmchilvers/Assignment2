@@ -8,3 +8,5 @@ Tristan Chilvers
 chilvers@chapman.edu
 
 Matthew Parnham
+2287511
+parnham@chapman.edu
