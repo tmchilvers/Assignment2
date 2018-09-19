@@ -5,22 +5,21 @@
 #include <unistd.h>
 #include <string>
 
-using namespace std;
-
 int main() {
-for(int k = 0; k < 100; k++) {
-  cout << string( 100, '\n' );
-  cout << "Generation " << k+1 << endl;
-  for(int i = 0; i < 10; i++){
-    for(int j = 0; j < 12; j++){
+  
+for(auto k = 0; k < 100; k++) {
+  std::cout << string( 100, '\n' );
+  std::cout << "Generation " << k+1 << std::endl;
+  for(auto i = 0; i < 10; i++){
+    for(auto j = 0; j < 12; j++){
       if (i==7 && j==4 && k%2==0) {
-        cout << "x ";
+        std::cout << "x ";
         continue;
       }
-      cout << "- ";
+      std::cout << "- ";
 
     }
-    cout << "\n";
+    std::cout << "\n";
 
   }
   sleep(1);
