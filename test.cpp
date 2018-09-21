@@ -34,7 +34,10 @@ int main() {
   }
   sleep(1);
 }*/
-  Grid grid1;
+  Grid grid1(40,60);
   grid1.printGrid();
+  cout << "\n";
+  Grid grid2("mapFile.txt");
+  grid2.printGrid();
   return 0;
 }

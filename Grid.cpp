@@ -13,8 +13,7 @@ Grid::Grid() //default
 {
   width = 10;
   height = 10;
-  //generate random cells and dimensions
-  genGrid();
+  genGrid(); //Empty grid is generated with given dimensions
   setGrid();
 }
 
@@ -22,16 +21,25 @@ Grid::Grid(int h, int w)
 {
   width = w;
   height = h;
-  //generate random cells
-  genGrid();
+  genGrid(); //Empty grid is generated with given dimensions
   setGrid();
 }
 
-Grid::Grid(ifstream& mapFile)
+Grid::Grid(string filePath)
 {
+  ifstream mapFile;
+  mapFile.open(filePath);
   //read in the height and width
-  genGrid();
+  string heightStr;
+  string widthStr;
+  getline(mapFile,heightStr);
+  getline(mapFile,widthStr);
+  height = stoi(heightStr);
+  width = stoi(widthStr);
+
+  genGrid(); //Empty grid is generated with given dimensions
   setGrid(mapFile);
+  mapFile.close();
 }
 
 Grid::~Grid() { //destructor initially deleted inner arrays then finally main array
@@ -109,11 +117,11 @@ void Grid::setGrid()
 void Grid::printGrid() {
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
-      if(gameGrid[j][i]) {
-        cout << 'x';
+      if(gameGrid[i][j]) {
+        cout << "x ";
       }
       else if(!gameGrid[i][j]) {
-        cout << '-';
+        cout << "- ";
       }
     }
     cout << endl;

@@ -12,7 +12,7 @@ class Grid
     //constructors
     Grid(); //default
     Grid(int h, int w); //random cells only
-    Grid(ifstream& mapFile); //file input
+    Grid(string filePath); //file input
 
     //Destructor
     ~Grid();
