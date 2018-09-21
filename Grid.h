@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
@@ -16,9 +18,19 @@ class Grid
     ~Grid();
 
     //Mutator functions
+    void genGrid(ifstream& mapFile);
+    void genGrid(int height, int width);
     void setGrid(ifstream& mapFile);
-    void randSetGrid(int height, int width);
+    void setGrid(int height, int width);
+    void setHeight(int h) { this->height = h; }
+    void setWidth(int w) { this->width = w; }
+
+    //Accessor functions
+    int getHeight() { return height; }
+    int getWidth() { return width; }
 
   private:
     int *gameGrid;
-}
+    int height;
+    int width;
+};
