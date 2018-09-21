@@ -6,18 +6,21 @@ using namespace std;
 Grid::Grid() //default
 {
   //generate random cells and dimensions
+  gameGrid = new int[height][width][2];
   randSetGrid(height, width);
 }
 
 Grid::Grid(int height, int width)
 {
   //generate random cells
+  gameGrid = new int[height][width][2];
   randSetGrid(height, width);
 }
 
 Grid::Grid(ifstream& mapFile)
 {
   //read in the height and width
+  gameGrid = new int[height][width][2];
   setGrid(mapFile);
 }
 

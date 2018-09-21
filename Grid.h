@@ -18,4 +18,7 @@ class Grid
     //Mutator functions
     void setGrid(ifstream& mapFile);
     void randSetGrid(int height, int width);
+
+  private:
+    int *gameGrid;
 }
