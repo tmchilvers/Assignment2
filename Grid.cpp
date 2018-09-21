@@ -30,30 +30,34 @@ Grid::Grid(ifstream& mapFile)
   setGrid(mapFile);
 }
 
+Grid::~Grid() {
+  for(int i = 0; i < width; i++) {
+    delete gameGrid[i];
+  }
+  delete gameGrid;
+  cout << "Grid deleted." << endl;
+}
+
 
 //mutator methods
 
 void Grid::genGrid(ifstream& mapFile) {
-  int width;
-  int height;
-  getline(mapFile,height);
-  getline(mapFile,width);
-  gameGrid = new int[width];
+  string widthStr;
+  string heightStr;
+  getline(mapFile,heightStr);
+  getline(mapFile,widthStr);
+  int width = stoi(widthStr);
+  int height = stoi(heightStr);
+  gameGrid = new int*[width];
   for(int i = 0; i < width; i++) {
-    gameGrid[i] = new int[height][1];
-    for(int j = 0; j < height; j++) {
-      gameGrid[i][j][0] = 0;
-    }
+    gameGrid[i] = new int[height];
   }
 }
 void Grid::genGrid(int height, int width) {
   //generates grid with 2 given parameters: height and width
-  gameGrid = new int[width];
+  gameGrid = new int*[width];
   for(int i = 0; i < width; i++) {
-    gameGrid[i] = new int[height][1];
-    for(int j = 0; j < height; j++) {
-      gameGrid[i][j][0] = 0;
-    }
+    gameGrid[i] = new int[height];
   }
 }
 
@@ -69,12 +73,12 @@ void Grid::setGrid(ifstream& mapFile)
     {
       if(line[j] == '-')
       {
-        gameGrid[i][j][0] = 0;
+        gameGrid[j][i] = 0;
       }
 
       else if(line[j] == 'X' || line[j] == 'x')
       {
-        gameGrid[i][j][0] = 1;
+        gameGrid[j][i] = 1;
       }
 
       else
@@ -89,16 +93,20 @@ void Grid::setGrid(int height, int width)
 {
   //Populate grid randomly
   srand(time(NULL));
-  int num = rand() % 2;
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      int num = rand() % 2;
 
-  if(num == 0)
-  {
-    gameGrid[i][j][0] = 0;
-  }
+      if(num == 0)
+      {
+        gameGrid[j][i] = 0;
+      }
 
-  else if(num == 1)
-  {
-    gameGrid[i][j][0] = 1;
+      else if(num == 1)
+      {
+        gameGrid[j][i] = 1;
+      }
+    }
   }
 }
 

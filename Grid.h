@@ -29,8 +29,9 @@ class Grid
     int getHeight() { return height; }
     int getWidth() { return width; }
 
+    int **gameGrid;
   private:
-    int *gameGrid;
+
     int height;
     int width;
 };
