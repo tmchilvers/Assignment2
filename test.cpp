@@ -34,12 +34,7 @@ int main() {
   }
   sleep(1);
 }*/
-Grid grid1(5,6);
-for(int i = 0; i < 5; i++) {
-  for(int j = 0; j < 6; j++) {
-    cout << grid1.gameGrid[j][i];
-  }
-  cout << endl;
-}
-return 0;
+  Grid grid1;
+  grid1.printGrid();
+  return 0;
 }

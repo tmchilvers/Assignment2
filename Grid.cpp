@@ -7,31 +7,35 @@
 
 using namespace std;
 
+//Constructors
+
 Grid::Grid() //default
 {
-  setHeight(10);
-  setWidth(10);
+  width = 10;
+  height = 10;
   //generate random cells and dimensions
-  genGrid(10,10);
-  setGrid(height, width);
+  genGrid();
+  setGrid();
 }
 
-Grid::Grid(int height, int width)
+Grid::Grid(int h, int w)
 {
+  width = w;
+  height = h;
   //generate random cells
-  genGrid(height,width);
-  setGrid(height, width);
+  genGrid();
+  setGrid();
 }
 
 Grid::Grid(ifstream& mapFile)
 {
   //read in the height and width
-  genGrid(mapFile);
+  genGrid();
   setGrid(mapFile);
 }
 
-Grid::~Grid() {
-  for(int i = 0; i < width; i++) {
+Grid::~Grid() { //destructor initially deleted inner arrays then finally main array
+  for(int i = 0; i < height; i++) {
     delete gameGrid[i];
   }
   delete gameGrid;
@@ -41,23 +45,14 @@ Grid::~Grid() {
 
 //mutator methods
 
-void Grid::genGrid(ifstream& mapFile) {
-  string widthStr;
-  string heightStr;
-  getline(mapFile,heightStr);
-  getline(mapFile,widthStr);
-  int width = stoi(widthStr);
-  int height = stoi(heightStr);
-  gameGrid = new int*[width];
-  for(int i = 0; i < width; i++) {
-    gameGrid[i] = new int[height];
-  }
-}
-void Grid::genGrid(int height, int width) {
-  //generates grid with 2 given parameters: height and width
-  gameGrid = new int*[width];
-  for(int i = 0; i < width; i++) {
-    gameGrid[i] = new int[height];
+void Grid::genGrid() {
+  //generates empty grid array with previously set height and width
+  gameGrid = new bool*[height];
+  for(int i = 0; i < height; i++) {
+    gameGrid[i] = new bool[width];
+    for(int j = 0; j < width; j++) {
+      gameGrid[i][j] = false;
+    }
   }
 }
 
@@ -73,12 +68,12 @@ void Grid::setGrid(ifstream& mapFile)
     {
       if(line[j] == '-')
       {
-        gameGrid[j][i] = 0;
+        gameGrid[i][j] = false;
       }
 
       else if(line[j] == 'X' || line[j] == 'x')
       {
-        gameGrid[j][i] = 1;
+        gameGrid[i][j] = true;
       }
 
       else
@@ -89,7 +84,7 @@ void Grid::setGrid(ifstream& mapFile)
   }
 }
 
-void Grid::setGrid(int height, int width)
+void Grid::setGrid()
 {
   //Populate grid randomly
   srand(time(NULL));
@@ -99,21 +94,31 @@ void Grid::setGrid(int height, int width)
 
       if(num == 0)
       {
-        gameGrid[j][i] = 0;
+        gameGrid[i][j] = false;
       }
 
       else if(num == 1)
       {
-        gameGrid[j][i] = 1;
+        gameGrid[i][j] = true;
       }
     }
   }
 }
 
-
-
-
-
+//Accessors
+void Grid::printGrid() {
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      if(gameGrid[j][i]) {
+        cout << 'x';
+      }
+      else if(!gameGrid[i][j]) {
+        cout << '-';
+      }
+    }
+    cout << endl;
+  }
+}
 
 
 //note: may need copy constrcutor for shadow thing
