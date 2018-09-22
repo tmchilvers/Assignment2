@@ -38,6 +38,7 @@ int main() {
   grid1.printGrid();
   cout << "\n";
   Grid grid2("mapFile.txt");
+  cout << grid2.getCell(2,7) << endl;
   grid2.printGrid();
   return 0;
 }

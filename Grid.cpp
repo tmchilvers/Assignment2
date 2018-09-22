@@ -7,7 +7,7 @@
 
 using namespace std;
 
-//Constructors
+//Constructors =======================================================
 
 Grid::Grid() //default
 {
@@ -51,7 +51,7 @@ Grid::~Grid() { //destructor initially deleted inner arrays then finally main ar
 }
 
 
-//mutator methods
+//mutator methods ====================================================
 
 void Grid::genGrid() {
   //generates empty grid array with previously set height and width
@@ -113,7 +113,7 @@ void Grid::setGrid() //default setGrid populates the grid with random true and f
   }
 }
 
-//Accessors
+//Accessors ==========================================================
 void Grid::printGrid() { //prints grid through std::cout formatted to appear visually accurate
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {

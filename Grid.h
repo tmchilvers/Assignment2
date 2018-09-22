@@ -27,7 +27,7 @@ class Grid
     //Accessor functions
     int getHeight() { return height; }
     int getWidth() { return width; }
-    bool getCell(int x, int y) { return gameGrid[x][y]; }
+    bool getCell(int h, int w) { return gameGrid[h][w]; }
     void printGrid();
 
   private:
