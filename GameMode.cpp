@@ -38,10 +38,8 @@ void mirrorUpdate(Grid& grid) {
 
 }
 
-int countNeighbors(const Grid& grid) {
+int countNeighbors(int i, int j) {
   int count = 0;
-  for(int i = 0; i < grid.getHeight(); i++) {
-    for(int j = 0; j < grid.getWidth(); j++) {
       if (grid.getCell(i+1,j)) {
         count++;
       }
@@ -66,6 +64,7 @@ int countNeighbors(const Grid& grid) {
       else if (grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
   }
 }
