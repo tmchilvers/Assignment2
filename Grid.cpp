@@ -128,5 +128,19 @@ void Grid::printGrid() { //prints grid through std::cout formatted to appear vis
   }
 }
 
+void Grid::printGridFile() { //prints grid through std::cout formatted to appear visually accurate
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      if(gameGrid[i][j]) {
+        cout << "x ";
+      }
+      else if(!gameGrid[i][j]) {
+        cout << "- ";
+      }
+    }
+    cout << endl;
+  }
+}
+
 
 //note: may need copy constrcutor for shadow thing
