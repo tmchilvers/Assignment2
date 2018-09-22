@@ -13,6 +13,8 @@ public:
   void toroidalUpdate(Grid& grid);
   void mirrorUpdate(Grid& grid);
 
+  int countNeighbors(const Grid& grid);
+
 private:
   int mode;
 };
