@@ -4,11 +4,12 @@
 #include <time.h>
 #include <unistd.h>
 #include <string>
+#include "Grid.h"
 
 using namespace std;
 
 int main() {
-for(int k = 0; k < 100; k++) {
+/*for(int k = 0; k < 100; k++) {
   cout << string( 100, '\n' );
   cout << "Generation " << k+1 << endl;
   for(int i = 0; i < 30; i++){
@@ -32,5 +33,11 @@ for(int k = 0; k < 100; k++) {
 
   }
   sleep(1);
-}
+}*/
+  Grid grid1(40,60);
+  grid1.printGrid();
+  cout << "\n";
+  Grid grid2("mapFile.txt");
+  grid2.printGrid();
+  return 0;
 }
