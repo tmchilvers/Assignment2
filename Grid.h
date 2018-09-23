@@ -1,3 +1,6 @@
+#ifndef GRID_H
+#define GRID_H
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -21,14 +24,14 @@ class Grid
     void genGrid();
     void setGrid(ifstream& mapFile);
     void setGrid();
-    void setHeight(int h) { this->height = h; }
-    void setWidth(int w) { this->width = w; }
+    void setHeight(int h);
+    void setWidth(int w);
 
     //Accessor functions
-    int getHeight() { return height; }
-    int getWidth() { return width; }
-    bool getCell(int h, int w) { return gameGrid[h][w]; }
-    void printGrid()
+    int getHeight();
+    int getWidth();
+    bool getCell(int h, int w);
+    void printGrid();
     void printGridFile(string fileName);
 
   private:
@@ -36,3 +39,5 @@ class Grid
     int height;
     int width;
 };
+
+#endif

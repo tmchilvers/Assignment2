@@ -1,3 +1,6 @@
+#ifndef GAMEMODE_H
+#define GAMEMODE_H
+
 #include "Grid.h"
 
 using namespace std;
@@ -20,3 +23,5 @@ public:
 private:
   int mode;
 };
+
+#endif

@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <string>
 #include "Grid.h"
-//#include "GameMode.h"
+#include "GameMode.h"
 
 using namespace std;
 
@@ -17,8 +17,9 @@ int main() {
   Grid grid2("mapFile.txt");
   cout << grid2.getCell(2,7) << endl;
   grid2.printGrid();
+  //cout << grid2.getHeight() - 1 << endl;
 
-  //GameMode g;
-  //cout << g.countMirror(grid2,2,7);
+  GameMode g;
+  cout << g.countMirror(grid2,39,54) << endl;
   return 0;
 }

@@ -6,15 +6,15 @@ using namespace std;
 
 
 //constructors
-GameMode() { //default
+GameMode::GameMode() { //default
   mode = 0;
 }
 
-GameMode(int mode) {
+GameMode::GameMode(int mode) {
 
 }
 
-void update(Grid& grid) {
+void GameMode::update(Grid& grid) {
   if (mode == 0) {
     classicUpdate(grid);
   }
@@ -28,17 +28,17 @@ void update(Grid& grid) {
     //error checking
   }
 }
-void classicUpdate(Grid& grid) {
+void GameMode::classicUpdate(Grid& grid) {
 
 }
-void toroidalUpdate(Grid& grid) {
+void GameMode::toroidalUpdate(Grid& grid) {
 
 }
-void mirrorUpdate(Grid& grid) {
+void GameMode::mirrorUpdate(Grid& grid) {
 
 }
 
-int countClassic(Grid& grid, int i, int j) {
+int GameMode::countClassic(Grid& grid, int i, int j) {
   int count = 0;
   if(i==0 ||
      i==grid.getHeight()-1 ||
@@ -166,10 +166,10 @@ int countClassic(Grid& grid, int i, int j) {
     }
     //bottom right corner
     if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
-      if(grid.getCell(i-1)) {
+      if(grid.getCell(i-1,j)) {
         count++;
       }
-      if(grid.getCell(j-1)) {
+      if(grid.getCell(i,j-1)) {
         count++;
       }
       if(grid.getCell(i-1,j-1)) {
@@ -182,36 +182,36 @@ int countClassic(Grid& grid, int i, int j) {
     if (grid.getCell(i+1,j)) {
       count++;
     }
-    else if (grid.getCell(i-1,j)) {
+    if (grid.getCell(i-1,j)) {
       count++;
     }
-    else if (grid.getCell(i,j+1)) {
+    if (grid.getCell(i,j+1)) {
       count++;
     }
-    else if (grid.getCell(i,j-1)) {
+    if (grid.getCell(i,j-1)) {
       count++;
     }
-    else if (grid.getCell(i+1,j+1)) {
+    if (grid.getCell(i+1,j+1)) {
       count++;
     }
-    else if (grid.getCell(i-1,j+1)) {
+    if (grid.getCell(i-1,j+1)) {
       count++;
     }
-    else if (grid.getCell(i+1,j+1)) {
+    if (grid.getCell(i+1,j-1)) {
       count++;
     }
-    else if (grid.getCell(i-1,j-1)) {
+    if (grid.getCell(i-1,j-1)) {
       count++;
     }
   }
   return count;
 }
 
-int countToroidal(Grid& grid, int i, int j) {
+int GameMode::countToroidal(Grid& grid, int i, int j) {
 
 }
 
-int countMirror(Grid& grid, int i, int j) {
+int GameMode::countMirror(Grid& grid, int i, int j) {
   int count = 0;
   if(i==0 ||
      i==grid.getHeight()-1 ||
@@ -232,6 +232,21 @@ int countMirror(Grid& grid, int i, int j) {
         count++;
       }
     }
+    //top right corner
+    if(i==0 && j==grid.getWidth()-1) {
+      if(grid.getCell(i,j)) {
+        count+=3;
+      }
+      if(grid.getCell(i,j-1)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j-1)) {
+        count++;
+      }
+    }
     //Top row
     else if(i==0) {
       if(grid.getCell(i,j+1)) {
@@ -250,6 +265,21 @@ int countMirror(Grid& grid, int i, int j) {
         count++;
       }
       if(grid.getCell(i+1,j-1)) {
+        count++;
+      }
+    }
+    //bottom left corner
+    if(i==grid.getHeight()-1 && j==0) {
+      if(grid.getCell(i,j)) {
+        count+=3;
+      }
+      if(grid.getCell(i-1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j+1)) {
+        count+=2;
+      }
+      if(grid.getCell(i-1,j+1)) {
         count++;
       }
     }
@@ -274,18 +304,18 @@ int countMirror(Grid& grid, int i, int j) {
         count++;
       }
     }
-    //top right corner
-    if(i==0 && j==grid.getWidth()-1) {
+    //bottom right corner
+    if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
       if(grid.getCell(i,j)) {
         count+=3;
+      }
+      if(grid.getCell(i-1,j)) {
+        count+=2;
       }
       if(grid.getCell(i,j-1)) {
         count+=2;
       }
-      if(grid.getCell(i+1,j)) {
-        count+=2;
-      }
-      if(grid.getCell(i+1,j-1)) {
+      if(grid.getCell(i-1,j-1)) {
         count++;
       }
     }
@@ -295,7 +325,7 @@ int countMirror(Grid& grid, int i, int j) {
         count+=2;
       }
       if(grid.getCell(i-1,j)) {
-        count+2;
+        count+=2;
       }
       if(grid.getCell(i,j)) {
         count++;
@@ -310,21 +340,7 @@ int countMirror(Grid& grid, int i, int j) {
         count++;
       }
     }
-    //bottom left corner
-    if(i==grid.getHeight()-1 && j==0) {
-      if(grid.getCell(i,j)) {
-        count+=3;
-      }
-      if(grid.getCell(i-1,j)) {
-        count+=2;
-      }
-      if(grid.getCell(i,j+1)) {
-        count+=2;
-      }
-      if(grid.getCell(i-1,j+1)) {
-        count++;
-      }
-    }
+
     //bottom row
     else if(i==grid.getHeight()-1) {
       if(grid.getCell(i,j+1)) {
@@ -346,46 +362,32 @@ int countMirror(Grid& grid, int i, int j) {
         count++;
       }
     }
-    //bottom right corner
-    if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
-      if(grid.getCell(i,j)) {
-        count+=3;
-      }
-      if(grid.getCell(i-1,j)) {
-        count+=2;
-      }
-      if(grid.getCell(j-1,j)) {
-        count+=2;
-      }
-      if(grid.getCell(i-1,j-1)) {
-        count++;
-      }
-    }
+
   }
   //non-edges
   else {
     if (grid.getCell(i+1,j)) {
       count++;
     }
-    else if (grid.getCell(i-1,j)) {
+    if (grid.getCell(i-1,j)) {
       count++;
     }
-    else if (grid.getCell(i,j+1)) {
+    if (grid.getCell(i,j+1)) {
       count++;
     }
-    else if (grid.getCell(i,j-1)) {
+    if (grid.getCell(i,j-1)) {
       count++;
     }
-    else if (grid.getCell(i+1,j+1)) {
+    if (grid.getCell(i+1,j+1)) {
       count++;
     }
-    else if (grid.getCell(i-1,j+1)) {
+    if (grid.getCell(i-1,j+1)) {
       count++;
     }
-    else if (grid.getCell(i+1,j+1)) {
+    if (grid.getCell(i+1,j-1)) {
       count++;
     }
-    else if (grid.getCell(i-1,j-1)) {
+    if (grid.getCell(i-1,j-1)) {
       count++;
     }
   }
