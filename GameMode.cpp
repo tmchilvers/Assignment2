@@ -203,8 +203,6 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
     }
     return count;
   }
-<<<<<<< HEAD
-  return count;
 }
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
@@ -346,8 +344,6 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
     }
   }
 return count;
-=======
->>>>>>> 67ab13470342dc268954d9a5238903ac7bc6e4be
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {
@@ -370,6 +366,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j+1)) {
         count++;
       }
+      return count;
     }
     //top right corner
     if(i==0 && j==grid.getWidth()-1) {
@@ -385,6 +382,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
     //Top row
     else if(i==0) {
@@ -406,6 +404,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
     //bottom left corner
     if(i==grid.getHeight()-1 && j==0) {
@@ -421,6 +420,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j+1)) {
         count++;
       }
+      return count;
     }
     //left column
     else if(j==0) {
@@ -442,6 +442,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j+1)) {
         count++;
       }
+      return count;
     }
     //bottom right corner
     if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
@@ -457,6 +458,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
     //right column
     else if(j==grid.getWidth()-1) {
@@ -478,6 +480,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
 
     //bottom row
@@ -500,6 +503,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
 
   }
@@ -529,6 +533,6 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
     if (grid.getCell(i-1,j-1)) {
       count++;
     }
-  }
   return count;
+  }
 }
