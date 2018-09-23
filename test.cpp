@@ -11,21 +11,21 @@ using namespace std;
 
 int main() {
 
-  Grid grid1(40,60);
-  grid1.printGrid();
-  cout << "\n";
+  //Grid grid1(40,60);
+  //grid1.printGrid();
+  //cout << "\n";
   Grid grid2("mapFile.txt");
   cout << grid2.getCell(2,7) << endl;
   grid2.printGrid();
   //cout << grid2.getHeight() - 1 << endl;
 
   GameMode g;
-<<<<<<< HEAD
-  cout << g.countClassic(grid2,39,0) << endl;
-=======
-  cout << g.countToroidal(grid2,0,0) << endl;
-  cout << g.countClassic(grid2,0,0) << endl;
-  cout << g.countMirror(grid2,0,0) << endl;
->>>>>>> b448343f95460e4fb4f9f86630d929a56c3bd552
+
+  for(int i = 0; i < 240; i++) {
+    //cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    g.update(grid2);
+    grid2.printGrid();
+    usleep(100000);
+  }
   return 0;
 }

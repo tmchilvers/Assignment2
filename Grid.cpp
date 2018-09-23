@@ -42,6 +42,17 @@ Grid::Grid(string filePath)
   mapFile.close();
 }
 
+Grid::Grid(Grid& other) {
+  height = other.getHeight();
+  width = other.getWidth();
+  genGrid();
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      gameGrid[i][j] = other.getCell(i,j);
+    }
+  }
+}
+
 Grid::~Grid() { //destructor initially deleted inner arrays then finally main array
   for(int i = 0; i < height; i++) {
     delete gameGrid[i];
@@ -57,6 +68,9 @@ void Grid::setHeight(int h) {
 }
 void Grid::setWidth(int w) {
   width = w;
+}
+void Grid::setCell(int i, int j, bool val) {
+  gameGrid[i][j] = val;
 }
 
 void Grid::genGrid() {

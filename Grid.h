@@ -16,6 +16,7 @@ class Grid
     Grid(); //default
     Grid(int h, int w); //random cells only
     Grid(string filePath); //file input
+    Grid(Grid& other);
 
     //Destructor
     ~Grid();
@@ -26,11 +27,12 @@ class Grid
     void setGrid();
     void setHeight(int h);
     void setWidth(int w);
+    void setCell(int i, int j, bool val);
 
     //Accessor functions
     int getHeight();
     int getWidth();
-    bool getCell(int h, int w);
+    bool getCell(int i, int j);
     void printGrid();
     void printGridFile(string fileName);
 

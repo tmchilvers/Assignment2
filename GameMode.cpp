@@ -29,13 +29,55 @@ void GameMode::update(Grid& grid) {
   }
 }
 void GameMode::classicUpdate(Grid& grid) {
-
+  Grid cloneGrid(grid);
+  for(int i = 0; i < grid.getHeight(); i++) {
+    for(int j = 0; j < grid.getWidth(); j++) {
+      int count = countClassic(cloneGrid,i,j);
+      if(count < 2) {
+        grid.setCell(i,j,false);
+      }
+      else if(count == 3) {
+        grid.setCell(i,j,true);
+      }
+      else if(count > 3) {
+        grid.setCell(i,j,false);
+      }
+    }
+  }
 }
 void GameMode::toroidalUpdate(Grid& grid) {
-
+  Grid cloneGrid(grid);
+  for(int i = 0; i < grid.getHeight(); i++) {
+    for(int j = 0; j < grid.getWidth(); j++) {
+      int count = countToroidal(cloneGrid,i,j);
+      if(count < 2) {
+        grid.setCell(i,j,false);
+      }
+      else if(count == 3) {
+        grid.setCell(i,j,true);
+      }
+      else if(count > 3) {
+        grid.setCell(i,j,false);
+      }
+    }
+  }
 }
 void GameMode::mirrorUpdate(Grid& grid) {
-
+  Grid cloneGrid(grid);
+  for(int i = 0; i < grid.getHeight(); i++) {
+    for(int j = 0; j < grid.getWidth(); j++) {
+      int count = countMirror(cloneGrid,i,j);
+      if(count < 2) {
+        grid.setCell(i,j,false);
+      }
+      else if(count == 3) {
+        grid.setCell(i,j,true);
+      }
+      else if(count > 3) {
+        grid.setCell(i,j,false);
+      }
+    }
+  }
 }
 
 int GameMode::countClassic(Grid& grid, int i, int j) {
@@ -203,10 +245,6 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
     }
     return count;
   }
-<<<<<<< HEAD
-  return count;
-=======
->>>>>>> b448343f95460e4fb4f9f86630d929a56c3bd552
 }
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
