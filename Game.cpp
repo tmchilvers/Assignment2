@@ -20,8 +20,7 @@ void Game::promptGameMode()
 
 void Game::promptCells()
 {
-
-
+  
 }
 
 void Game::promptOutput()

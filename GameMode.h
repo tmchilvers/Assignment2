@@ -4,7 +4,7 @@ using namespace std;
 
 class GameMode {
 public:
-  //constructors
+  //ructors
   GameMode(); //default
   GameMode(int mode);
 
@@ -13,9 +13,9 @@ public:
   void toroidalUpdate(Grid& grid);
   void mirrorUpdate(Grid& grid);
 
-  int countClassic(const Grid& grid, int i, int j);
-  int countToroidal(const Grid& grid, int i, int j);
-  int countMirror(const Grid& grid, int i, int j);
+  int countClassic(Grid& grid, int i, int j);
+  int countToroidal(Grid& grid, int i, int j);
+  int countMirror(Grid& grid, int i, int j);
 
 private:
   int mode;
