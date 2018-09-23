@@ -5,6 +5,7 @@
 #include <string>
 #include "Grid.h"
 #include "GameMode.h"
+#include <fstream>
 
 
 using namespace std;
@@ -14,7 +15,7 @@ class Game
   private:
     //instance variables
     GameMode *mode; //maybe pointer?
-    Grid grid; //maybe pointer?
+    Grid *grid; //maybe pointer?
     int returnMode;
     string outputFileName;
 
