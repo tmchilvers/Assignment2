@@ -38,33 +38,216 @@ void mirrorUpdate(Grid& grid) {
 
 }
 
-int countNeighbors(const Grid& grid, int i, int j) {
+int countClassic(const Grid& grid, int i, int j) {
   int count = 0;
-      if (grid.getCell(i+1,j)) {
+  if (grid.getCell(i+1,j)) {
+    count++;
+  }
+  else if (grid.getCell(i-1,j)) {
+    count++;
+  }
+  else if (grid.getCell(i,j+1)) {
+    count++;
+  }
+  else if (grid.getCell(i,j-1)) {
+    count++;
+  }
+  else if (grid.getCell(i+1,j+1)) {
+    count++;
+  }
+  else if (grid.getCell(i-1,j+1)) {
+    count++;
+  }
+  else if (grid.getCell(i+1,j+1)) {
+    count++;
+  }
+  else if (grid.getCell(i-1,j-1)) {
+    count++;
+  }
+  return count;
+}
+
+int countToroidal(const Grid& grid, int i, int j) {
+
+}
+
+int countMirror()const Grid& grid, int i, int j {
+  int count = 0;
+  if(i==0 ||
+     i==grid.getHeight()-1 ||
+     j==0 ||
+     j==grid.getWidth()-1) {
+    //top left corner
+    if(i==0 && j==0) {
+      if(grid.getCell(i,j)) {
+        count += 3;
+      }
+      if(grid.getCell(i,j+1)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j+1)) {
         count++;
       }
-      else if (grid.getCell(i-1,j)) {
+    }
+    //Top row
+    else if(i==0) {
+      if(grid.getCell(i,j+1)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j-1)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j)) {
         count++;
       }
-      else if (grid.getCell(i,j+1)) {
+      if(grid.getCell(i+1,j)) {
         count++;
       }
-      else if (grid.getCell(i,j-1)) {
+      if(grid.getCell(i+1,j+1)) {
         count++;
       }
-      else if (grid.getCell(i+1,j+1)) {
+      if(grid.getCell(i+1,j-1)) {
         count++;
       }
-      else if (grid.getCell(i-1,j+1)) {
+    }
+    //left column
+    else if(j==0) {
+      if(grid.getCell(i+1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i-1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j)) {
         count++;
       }
-      else if (grid.getCell(i+1,j+1)) {
+      if(grid.getCell(i,j+1)) {
         count++;
       }
-      else if (grid.getCell(i-1,j-1)) {
+      if(grid.getCell(i-1,j+1)) {
         count++;
       }
-      return count;
+      if(grid.getCell(i+1,j+1)) {
+        count++;
+      }
+    }
+    //top right corner
+    if(i==0 && j==grid.getWidth()-1) {
+      if(grid.getCell(i,j)) {
+        count+=3;
+      }
+      if(grid.getCell(i,j-1)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i+1,j-1)) {
+        count++;
+      }
+    }
+    //right column
+    else if(j==grid.getWidth()-1) {
+      if(grid.getCell(i+1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i-1,j)) {
+        count+2;
+      }
+      if(grid.getCell(i,j)) {
+        count++;
+      }
+      if(grid.getCell(i,j-1)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j-1)) {
+        count++;
+      }
+      if(grid.getCell(i+1,j-1)) {
+        count++;
+      }
+    }
+    //bottom left corner
+    if(i==grid.getHeight()-1 && j==0) {
+      if(grid.getCell(i,j)) {
+        count+=3;
+      }
+      if(grid.getCell(i-1,j)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j+1)) {
+        count+=2;
+      }
+      if(grid.getCell(i-1,j+1)) {
+        count++;
+      }
+    }
+    //bottom row
+    else if(i==grid.getHeight()-1) {
+      if(grid.getCell(i,j+1)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j-1)) {
+        count+=2;
+      }
+      if(grid.getCell(i,j)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j+1)) {
+        count++;
+      }
+      if(grid.getCell(i-1)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j-1)) {
+        count++;
+      }
+    }
+    //bottom right corner
+    if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
+      if(grid.getCell(i,j)) {
+        count+=3;
+      }
+      if(grid.getCell(i-1)) {
+        count+=2;
+      }
+      if(grid.getCell(j-1)) {
+        count+=2;
+      }
+      if(grid.getCell(i-1,j-1)) {
+        count++;
+      }
     }
   }
+  //non-edges
+  else {
+    if (grid.getCell(i+1,j)) {
+      count++;
+    }
+    else if (grid.getCell(i-1,j)) {
+      count++;
+    }
+    else if (grid.getCell(i,j+1)) {
+      count++;
+    }
+    else if (grid.getCell(i,j-1)) {
+      count++;
+    }
+    else if (grid.getCell(i+1,j+1)) {
+      count++;
+    }
+    else if (grid.getCell(i-1,j+1)) {
+      count++;
+    }
+    else if (grid.getCell(i+1,j+1)) {
+      count++;
+    }
+    else if (grid.getCell(i-1,j-1)) {
+      count++;
+    }
+  }
+  return count;
 }

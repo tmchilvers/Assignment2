@@ -13,7 +13,9 @@ public:
   void toroidalUpdate(Grid& grid);
   void mirrorUpdate(Grid& grid);
 
-  int countNeighbors(const Grid& grid);
+  int countClassic(const Grid& grid, int i, int j);
+  int countToroidal(const Grid& grid, int i, int j);
+  int countMirror(const Grid& grid, int i, int j);
 
 private:
   int mode;
