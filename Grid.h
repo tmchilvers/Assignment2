@@ -28,7 +28,7 @@ class Grid
     int getHeight() { return height; }
     int getWidth() { return width; }
     bool getCell(int h, int w) { return gameGrid[h][w]; }
-    void printGrid();
+    void printGrid()
     void printGridFile(string fileName);
 
   private:
