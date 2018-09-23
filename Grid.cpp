@@ -58,7 +58,7 @@ Grid::~Grid() { //destructor initially deleted inner arrays then finally main ar
     delete gameGrid[i];
   }
   delete gameGrid;
-  cout << "Grid deleted." << endl;
+  //cout << "Grid deleted." << endl;
 }
 
 

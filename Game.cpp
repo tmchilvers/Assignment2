@@ -45,12 +45,15 @@ void Game::promptGameMode()
   cin >> gameModeControl;
   if(gameModeControl == 1) {
     mode = new GameMode;
+    cout << "Classic mode selected!" << endl;
   }
   else if(gameModeControl == 2) {
     mode = new GameMode(1);
+    cout << "Donut mode selected!" << endl;
   }
   else if(gameModeControl == 3) {
     mode = new GameMode(2);
+    cout << "Classic mode selected!" << endl;
   }
   else {
     //catch errors
@@ -65,7 +68,7 @@ void Game::promptCells()
   cout << "2. Provide dimensions and density." << endl;
   cin >> inputControl;
 
-  if(inputControl == 1) {
+  if(inputControl == 2) {
     cout << "Height:\n";
     int height;
     cin >> height;
@@ -77,7 +80,7 @@ void Game::promptCells()
     cin >> density;
     grid = new Grid(height,width,density);
   }
-  else if (inputControl == 2) {
+  else if (inputControl == 1) {
     grid = new Grid(promptFileName());
   }
 }

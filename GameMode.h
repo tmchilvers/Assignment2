@@ -9,7 +9,7 @@ class GameMode {
 public:
   //ructors
   GameMode(); //default
-  GameMode(int mode);
+  GameMode(int m);
 
   void update(Grid& grid);
   void classicUpdate(Grid& grid);
