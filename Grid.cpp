@@ -7,7 +7,7 @@
 
 using namespace std;
 
-//Constructors
+//Constructors =======================================================
 
 Grid::Grid() //default
 {
@@ -42,6 +42,17 @@ Grid::Grid(string filePath)
   mapFile.close();
 }
 
+Grid::Grid(Grid& other) {
+  height = other.getHeight();
+  width = other.getWidth();
+  genGrid();
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      gameGrid[i][j] = other.getCell(i,j);
+    }
+  }
+}
+
 Grid::~Grid() { //destructor initially deleted inner arrays then finally main array
   for(int i = 0; i < height; i++) {
     delete gameGrid[i];
@@ -51,7 +62,16 @@ Grid::~Grid() { //destructor initially deleted inner arrays then finally main ar
 }
 
 
-//mutator methods
+//mutator methods ====================================================
+void Grid::setHeight(int h) {
+  height = h;
+}
+void Grid::setWidth(int w) {
+  width = w;
+}
+void Grid::setCell(int i, int j, bool val) {
+  gameGrid[i][j] = val;
+}
 
 void Grid::genGrid() {
   //generates empty grid array with previously set height and width
@@ -113,8 +133,32 @@ void Grid::setGrid() //default setGrid populates the grid with random true and f
   }
 }
 
-//Accessors
+//Accessors ==========================================================
+bool Grid::getCell(int i, int j) {
+  return gameGrid[i][j];
+}
+int Grid::getHeight() {
+  return height;
+}
+int Grid::getWidth() {
+  return width;
+}
+
 void Grid::printGrid() { //prints grid through std::cout formatted to appear visually accurate
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      if(gameGrid[i][j]) {
+        cout << "x ";
+      }
+      else if(!gameGrid[i][j]) {
+        cout << "- ";
+      }
+    }
+    cout << endl;
+  }
+}
+
+void Grid::printGridFile(string fileName) { //prints grid through std::cout formatted to appear visually accurate
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
       if(gameGrid[i][j]) {

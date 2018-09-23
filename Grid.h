@@ -1,3 +1,6 @@
+#ifndef GRID_H
+#define GRID_H
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -13,6 +16,7 @@ class Grid
     Grid(); //default
     Grid(int h, int w); //random cells only
     Grid(string filePath); //file input
+    Grid(Grid& other);
 
     //Destructor
     ~Grid();
@@ -21,17 +25,21 @@ class Grid
     void genGrid();
     void setGrid(ifstream& mapFile);
     void setGrid();
-    void setHeight(int h) { this->height = h; }
-    void setWidth(int w) { this->width = w; }
+    void setHeight(int h);
+    void setWidth(int w);
+    void setCell(int i, int j, bool val);
 
     //Accessor functions
-    int getHeight() { return height; }
-    int getWidth() { return width; }
-    bool getCell(int x, int y) { return gameGrid[x][y]; }
+    int getHeight();
+    int getWidth();
+    bool getCell(int i, int j);
     void printGrid();
+    void printGridFile(string fileName);
 
   private:
     bool **gameGrid;
     int height;
     int width;
 };
+
+#endif
