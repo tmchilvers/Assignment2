@@ -128,7 +128,7 @@ void Grid::printGrid() { //prints grid through std::cout formatted to appear vis
   }
 }
 
-void Grid::printGridFile() { //prints grid through std::cout formatted to appear visually accurate
+void Grid::printGridFile(string fileName) { //prints grid through std::cout formatted to appear visually accurate
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
       if(gameGrid[i][j]) {

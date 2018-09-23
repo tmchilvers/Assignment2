@@ -1,3 +1,6 @@
+#include "Game.h"
+#include <iostream>
+
 //Constructors
 Game::Game()
 {
@@ -20,7 +23,8 @@ void Game::promptGameMode()
 
 void Game::promptCells()
 {
-  
+
+
 }
 
 void Game::promptOutput()
