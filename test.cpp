@@ -21,5 +21,8 @@ int main() {
 
   GameMode g;
   cout << g.countMirror(grid2,39,54) << endl;
+  int answer = (-1) % 40;
+  cout << answer << endl;
+  cout << g.countToroidal(grid2,0,0) << endl;
   return 0;
 }

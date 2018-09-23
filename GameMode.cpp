@@ -1,5 +1,6 @@
 #include "Grid.h"
 #include "GameMode.h"
+#include <functional>
 
 using namespace std;
 
@@ -208,7 +209,40 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
 }
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
-
+  int count = 0;
+  if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell(std::modulus<int>(i-1,grid.getHeight()),(j%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell((i%grid.getHeight()),((j-1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell(((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell(((i+1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+  if (grid.getCell(((i-1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+    cout << "hi\n";
+    count++;
+  }
+return count;
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {

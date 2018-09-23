@@ -16,6 +16,14 @@ Game::~Game()
 
 }
 
+
+//Main Loop
+void Game::gameLoop() {
+  
+}
+
+
+
 void Game::promptGameMode()
 {
 
@@ -38,24 +46,25 @@ void Game::promptOutput()
 
   if(outputControl == 1)
   {
-    printGridEnter();
+    returnMode = 1;
   }
 
   else if(outputControl == 2)
   {
-    mode.printGrid();
+    returnMode = 2;
   }
 
   else if(outputControl == 3)
   {
-    string fileName;
-    cout << "\nWhat would you like to name the file?: " << endl;
-    cin >>
-    mode.printGridFile(fileName);
+
+    outputFileName = promptFileName();
   }
 }
 
 string Game::promptFileName()
 {
-
+  string fileName;
+  cout << "\nWhat would you like to name the file?: " << endl;
+  cin >> fileName;
+  return fileName;
 }

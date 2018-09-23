@@ -1,5 +1,10 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include <iostream>
 #include <string>
+#include "Grid.h"
+#include "GameMode.h"
 
 
 using namespace std;
@@ -10,6 +15,8 @@ class Game
     //instance variables
     GameMode *mode; //maybe pointer?
     Grid grid; //maybe pointer?
+    int returnMode;
+    string outputFileName;
 
   public:
     //Constructors
@@ -27,4 +34,6 @@ class Game
     void printGridEnter();
     void gameLoop();
 
-}
+};
+
+#endif
