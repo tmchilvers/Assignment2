@@ -10,3 +10,6 @@ chilvers@chapman.edu
 Matthew Parnham
 2287511
 parnham@chapman.edu
+
+https://codereview.stackexchange.com/questions/57923/index-into-array-as-if-it-is-circular
+https://www.symbolab.com/solver/step-by-step/-1%20mod%2040
