@@ -20,6 +20,10 @@ int main() {
   //cout << grid2.getHeight() - 1 << endl;
 
   GameMode g;
+<<<<<<< HEAD
   cout << g.countToroidal(grid2,39,54) << endl;
+=======
+  cout << g.countClassic(grid2,39,0) << endl;
+>>>>>>> 67ab13470342dc268954d9a5238903ac7bc6e4be
   return 0;
 }
