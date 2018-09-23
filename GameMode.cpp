@@ -1,6 +1,5 @@
 #include "Grid.h"
 #include "GameMode.h"
-#include <functional>
 
 using namespace std;
 
@@ -210,37 +209,141 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
   int count = 0;
-  if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
+  if (i == 0 && j == 0) {
+    if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + (i-1)%grid.getHeight(),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + ((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + ((i-1)%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
   }
-  if (grid.getCell(std::modulus<int>(i-1,grid.getHeight()),(j%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
+  else if(i == 0) {
+    if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + (i-1)%grid.getHeight(),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + ((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(grid.getHeight() + ((i-1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
   }
-  if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
+  else if(j == 0) {
+    if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i-1)%grid.getHeight(),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i-1)%grid.getHeight()),(grid.getWidth() + (j-1)%grid.getWidth()))) {
+
+      count++;
+    }
   }
-  if (grid.getCell((i%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i+1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i-1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
+  else {
+    if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i-1)%grid.getHeight(),(j%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell((i%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i+1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
+    if (grid.getCell(((i-1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
+
+      count++;
+    }
   }
 return count;
 }
