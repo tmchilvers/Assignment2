@@ -71,7 +71,7 @@ int countToroidal(const Grid& grid, int i, int j) {
 
 }
 
-int countMirror()const Grid& grid, int i, int j {
+int countMirror(const Grid& grid, int i, int j) {
   int count = 0;
   if(i==0 ||
      i==grid.getHeight()-1 ||
