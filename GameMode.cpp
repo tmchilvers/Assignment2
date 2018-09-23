@@ -56,48 +56,7 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j+1)) {
         count++;
       }
-    }
-    //Top row
-    else if(i==0) {
-      if(grid.getCell(i,j+1)) {
-        count++;
-      }
-      if(grid.getCell(i,j-1)) {
-        count++;
-      }
-      if(grid.getCell(i,j)) {
-        count++;
-      }
-      if(grid.getCell(i+1,j)) {
-        count++;
-      }
-      if(grid.getCell(i+1,j+1)) {
-        count++;
-      }
-      if(grid.getCell(i+1,j-1)) {
-        count++;
-      }
-    }
-    //left column
-    else if(j==0) {
-      if(grid.getCell(i+1,j)) {
-        count++;
-      }
-      if(grid.getCell(i-1,j)) {
-        count++;
-      }
-      if(grid.getCell(i,j)) {
-        count++;
-      }
-      if(grid.getCell(i,j+1)) {
-        count++;
-      }
-      if(grid.getCell(i-1,j+1)) {
-        count++;
-      }
-      if(grid.getCell(i+1,j+1)) {
-        count++;
-      }
+      return count;
     }
     //top right corner
     if(i==0 && j==grid.getWidth()-1) {
@@ -110,27 +69,26 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
-    //right column
-    else if(j==grid.getWidth()-1) {
-      if(grid.getCell(i+1,j)) {
-        count++;
-      }
-      if(grid.getCell(i-1,j)) {
-        count++;
-      }
-      if(grid.getCell(i,j)) {
+    //Top row
+    else if(i==0) {
+      if(grid.getCell(i,j+1)) {
         count++;
       }
       if(grid.getCell(i,j-1)) {
         count++;
       }
-      if(grid.getCell(i-1,j-1)) {
+      if(grid.getCell(i+1,j)) {
+        count++;
+      }
+      if(grid.getCell(i+1,j+1)) {
         count++;
       }
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
     //bottom left corner
     if(i==grid.getHeight()-1 && j==0) {
@@ -143,27 +101,26 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j+1)) {
         count++;
       }
+      return count;
     }
-    //bottom row
-    else if(i==grid.getHeight()-1) {
-      if(grid.getCell(i,j+1)) {
-        count++;
-      }
-      if(grid.getCell(i,j-1)) {
-        count++;
-      }
-      if(grid.getCell(i,j)) {
-        count++;
-      }
-      if(grid.getCell(i-1,j+1)) {
+    //left column
+    else if(j==0) {
+      if(grid.getCell(i+1,j)) {
         count++;
       }
       if(grid.getCell(i-1,j)) {
         count++;
       }
-      if(grid.getCell(i-1,j-1)) {
+      if(grid.getCell(i,j+1)) {
         count++;
       }
+      if(grid.getCell(i-1,j+1)) {
+        count++;
+      }
+      if(grid.getCell(i+1,j+1)) {
+        count++;
+      }
+      return count;
     }
     //bottom right corner
     if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
@@ -176,7 +133,48 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
+    //right column
+    else if(j==grid.getWidth()-1) {
+      if(grid.getCell(i+1,j)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j)) {
+        count++;
+      }
+      if(grid.getCell(i,j-1)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j-1)) {
+        count++;
+      }
+      if(grid.getCell(i+1,j-1)) {
+        count++;
+      }
+      return count;
+    }
+
+    //bottom row
+    else if(i==grid.getHeight()-1) {
+      if(grid.getCell(i,j+1)) {
+        count++;
+      }
+      if(grid.getCell(i,j-1)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j+1)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j)) {
+        count++;
+      }
+      if(grid.getCell(i-1,j-1)) {
+        count++;
+      }
+      return count;
+    }
+
   }
   //non-edges
   else {
@@ -204,45 +202,8 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
     if (grid.getCell(i-1,j-1)) {
       count++;
     }
+    return count;
   }
-  return count;
-}
-
-int GameMode::countToroidal(Grid& grid, int i, int j) {
-  int count = 0;
-  if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(std::modulus<int>(i-1,grid.getHeight()),(j%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell((i%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell((i%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i+1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i-1)%grid.getHeight()),((j+1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i+1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-  if (grid.getCell(((i-1)%grid.getHeight()),((j-1)%grid.getWidth()))) {
-    cout << "hi\n";
-    count++;
-  }
-return count;
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {
