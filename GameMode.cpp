@@ -203,7 +203,6 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
     }
     return count;
   }
-<<<<<<< HEAD
   return count;
 }
 
@@ -346,8 +345,6 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
     }
   }
 return count;
-=======
->>>>>>> 67ab13470342dc268954d9a5238903ac7bc6e4be
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {
