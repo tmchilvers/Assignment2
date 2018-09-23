@@ -1,3 +1,6 @@
+#include "Game.h"
+#include <iostream>
+
 //Constructors
 Game::Game()
 {
