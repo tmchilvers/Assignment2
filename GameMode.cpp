@@ -203,7 +203,10 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
     }
     return count;
   }
+<<<<<<< HEAD
   return count;
+=======
+>>>>>>> b448343f95460e4fb4f9f86630d929a56c3bd552
 }
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
@@ -367,6 +370,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j+1)) {
         count++;
       }
+      return count;
     }
     //top right corner
     if(i==0 && j==grid.getWidth()-1) {
@@ -382,6 +386,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
     //Top row
     else if(i==0) {
@@ -403,6 +408,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
     //bottom left corner
     if(i==grid.getHeight()-1 && j==0) {
@@ -418,6 +424,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j+1)) {
         count++;
       }
+      return count;
     }
     //left column
     else if(j==0) {
@@ -439,6 +446,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j+1)) {
         count++;
       }
+      return count;
     }
     //bottom right corner
     if(i==grid.getHeight()-1 && j==grid.getWidth()-1) {
@@ -454,6 +462,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
     //right column
     else if(j==grid.getWidth()-1) {
@@ -475,6 +484,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i+1,j-1)) {
         count++;
       }
+      return count;
     }
 
     //bottom row
@@ -497,6 +507,7 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       if(grid.getCell(i-1,j-1)) {
         count++;
       }
+      return count;
     }
 
   }
@@ -526,6 +537,6 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
     if (grid.getCell(i-1,j-1)) {
       count++;
     }
-  }
   return count;
+  }
 }
