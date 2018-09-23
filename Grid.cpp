@@ -17,12 +17,12 @@ Grid::Grid() //default
   setGrid();
 }
 
-Grid::Grid(int h, int w)
+Grid::Grid(int h, int w, double d)
 {
   width = w;
   height = h;
   genGrid(); //Empty grid is generated with given dimensions
-  setGrid();
+  setGrid(d);
 }
 
 Grid::Grid(string filePath)
@@ -107,6 +107,27 @@ void Grid::setGrid(ifstream& mapFile) //overloaded setGrid function
       else
       {
         //catch/throw error - end program
+      }
+    }
+  }
+}
+
+void Grid::setGrid(double density) //populates the grid with random based off density
+{
+  //Populate grid randomly
+  srand(time(NULL));
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
+      double num = double(rand() % 100)/100;
+
+      if(num > density)
+      {
+        gameGrid[i][j] = false;
+      }
+
+      else if(num <= density)
+      {
+        gameGrid[i][j] = true;
       }
     }
   }
