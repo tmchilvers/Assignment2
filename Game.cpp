@@ -28,7 +28,7 @@ Game::~Game()
 void Game::gameLoop() {
   while(true) {
     grid->printGrid();
-    mode->update(grid);
+    mode->update(*grid);
     usleep(100000);
   }
 }

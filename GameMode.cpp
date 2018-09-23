@@ -14,7 +14,7 @@ GameMode::GameMode(int mode) {
 
 }
 
-void GameMode::update(Grid* grid) {
+void GameMode::update(Grid& grid) {
   if (mode == 0) {
     classicUpdate(grid);
   }
