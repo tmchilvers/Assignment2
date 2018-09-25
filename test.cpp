@@ -6,6 +6,7 @@
 #include <string>
 #include "Grid.h"
 #include "GameMode.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main() {
   //Grid grid1(40,60);
   //grid1.printGrid();
   //cout << "\n";
-  Grid grid2("mapFile.txt");
+  /*Grid grid2("mapFile.txt");
   cout << grid2.getCell(2,7) << endl;
   grid2.printGrid();
   //cout << grid2.getHeight() - 1 << endl;
@@ -26,6 +27,7 @@ int main() {
     g.update(grid2);
     grid2.printGrid();
     usleep(100000);
-  }
+  }*/
+  Game game;
   return 0;
 }

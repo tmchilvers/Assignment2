@@ -10,8 +10,8 @@ GameMode::GameMode() { //default
   mode = 0;
 }
 
-GameMode::GameMode(int mode) {
-
+GameMode::GameMode(int m) {
+  mode = m;
 }
 
 void GameMode::update(Grid& grid) {

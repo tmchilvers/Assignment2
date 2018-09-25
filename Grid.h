@@ -14,7 +14,7 @@ class Grid
   public:
     //constructors
     Grid(); //default
-    Grid(int h, int w); //random cells only
+    Grid(int h, int w, double d); //random cells only
     Grid(string filePath); //file input
     Grid(Grid& other);
 
@@ -24,6 +24,7 @@ class Grid
     //Mutator functions
     void genGrid();
     void setGrid(ifstream& mapFile);
+    void setGrid(double density);
     void setGrid();
     void setHeight(int h);
     void setWidth(int w);
