@@ -9,7 +9,7 @@
 #include "GameMode.h"
 
 //Constructors
-Game::Game()
+Game::Game() //default constructor
 {
   promptGameMode();
   promptCells();
