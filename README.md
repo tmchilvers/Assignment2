@@ -13,3 +13,4 @@ parnham@chapman.edu
 
 https://codereview.stackexchange.com/questions/57923/index-into-array-as-if-it-is-circular
 https://www.symbolab.com/solver/step-by-step/-1%20mod%2040
+https://stackoverflow.com/questions/903221/press-enter-to-continue
