@@ -144,8 +144,19 @@ void Game::promptOutput()
 
 string Game::promptFileName()
 {
-  string fileName;
-  cout << "\nWhat is the name of the file?: " << endl;
-  cin >> fileName;
-  return fileName;
+  while(true) {
+    string fileName;
+    cout << "\nWhat is the name of the file?: " << endl;
+    cin >> fileName;
+    //Check to make sure file exists
+    ifstream f;
+    f.open(fileName);
+    if(f) {
+      f.close();
+      return fileName;
+    }
+    else {
+      cout << "File not found. Try again." << endl;
+    }
+  }
 }
