@@ -26,10 +26,34 @@ Game::~Game()
 
 //Main Loop
 void Game::gameLoop() {
-  while(true) {
-    grid->printGrid();
-    mode->update(*grid);
-    usleep(100000);
+  if(returnMode == 1) {
+    int count = 0;
+    while(true) {
+      cout << "Generation " << count << endl;
+      grid->printGrid();
+      mode->update(*grid);
+      count++;
+      usleep(100000);
+    }
+  }
+  else if(returnMode == 2) {
+    //Enter to update generations
+    int count = 0;
+    while(true) {
+      cout << "Generation " << count << endl;
+      grid->printGrid();
+      cout << "Press Enter to Continue." << endl;
+      cin.ignore();
+      mode->update(*grid);
+      count++;
+    }
+
+  }
+  else if(returnMode == 3) {
+    //output game to file
+  }
+  else {
+    cout << "An error has occured. Execution terminated." << endl;
   }
 }
 
@@ -57,6 +81,8 @@ void Game::promptGameMode()
   }
   else {
     //catch errors
+    cout << "Invalid input." << endl;
+    //promptGameMode();
   }
 }
 
@@ -82,6 +108,11 @@ void Game::promptCells()
   }
   else if (inputControl == 1) {
     grid = new Grid(promptFileName());
+  }
+  else {
+    //catch errors
+    cout << "Invalid input." << endl;
+    //promptCells();
   }
 }
 
