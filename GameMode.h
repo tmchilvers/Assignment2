@@ -11,10 +11,11 @@ public:
   GameMode(); //default
   GameMode(int m);
 
-  void update(Grid& grid);
-  void classicUpdate(Grid& grid);
-  void toroidalUpdate(Grid& grid);
-  void mirrorUpdate(Grid& grid);
+  bool update(Grid& grid);
+  bool classicUpdate(Grid& grid);
+  bool toroidalUpdate(Grid& grid);
+  bool mirrorUpdate(Grid& grid);
+  bool compareUpdate(Grid& grid, Grid& otherGrid, int i, int j);
 
   int countClassic(Grid& grid, int i, int j);
   int countToroidal(Grid& grid, int i, int j);

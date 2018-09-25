@@ -14,22 +14,31 @@ GameMode::GameMode(int m) {
   mode = m;
 }
 
-void GameMode::update(Grid& grid) {
+
+bool GameMode::compareUpdate(Grid& grid, Grid& otherGrid, int i, int j)
+{
+  return grid.getCell(i,j) == otherGrid.getCell(i,j);
+}
+
+bool GameMode::update(Grid& grid) {
   if (mode == 0) {
-    classicUpdate(grid);
+    return classicUpdate(grid);
   }
   else if (mode == 1) {
-    toroidalUpdate(grid);
+    return toroidalUpdate(grid);
   }
   else if (mode == 2) {
-    mirrorUpdate(grid);
+    return mirrorUpdate(grid);
   }
   else {
     //error checking
   }
 }
-void GameMode::classicUpdate(Grid& grid) {
+bool GameMode::classicUpdate(Grid& grid) {
   Grid cloneGrid(grid);
+  bool ifEquals = true;
+  int countFalse = 0;
+
   for(int i = 0; i < grid.getHeight(); i++) {
     for(int j = 0; j < grid.getWidth(); j++) {
       int count = countClassic(cloneGrid,i,j);
@@ -42,11 +51,29 @@ void GameMode::classicUpdate(Grid& grid) {
       else if(count > 3) {
         grid.setCell(i,j,false);
       }
+      ifEquals = compareUpdate(grid, cloneGrid, i, j);
+
+      if(ifEquals == false)
+      {
+        countFalse++;
+      }
     }
   }
+  if(countFalse > 0)
+  {
+    return true; //true means run again
+  }
+
+  else
+  {
+    return false; //if false, do not run again
+  }
 }
-void GameMode::toroidalUpdate(Grid& grid) {
+bool GameMode::toroidalUpdate(Grid& grid) {
   Grid cloneGrid(grid);
+  bool ifEquals = true;
+  int countFalse = 0;
+
   for(int i = 0; i < grid.getHeight(); i++) {
     for(int j = 0; j < grid.getWidth(); j++) {
       int count = countToroidal(cloneGrid,i,j);
@@ -59,11 +86,30 @@ void GameMode::toroidalUpdate(Grid& grid) {
       else if(count > 3) {
         grid.setCell(i,j,false);
       }
+
+      ifEquals = compareUpdate(grid, cloneGrid, i, j);
+
+      if(ifEquals == false)
+      {
+        countFalse++;
+      }
     }
   }
+  if(countFalse > 0)
+  {
+    return true; //true means run again
+  }
+
+  else
+  {
+    return false; //if false, do not run again
+  }
 }
-void GameMode::mirrorUpdate(Grid& grid) {
+bool GameMode::mirrorUpdate(Grid& grid) {
   Grid cloneGrid(grid);
+  bool ifEquals = true;
+  int countFalse = 0;
+
   for(int i = 0; i < grid.getHeight(); i++) {
     for(int j = 0; j < grid.getWidth(); j++) {
       int count = countMirror(cloneGrid,i,j);
@@ -76,7 +122,23 @@ void GameMode::mirrorUpdate(Grid& grid) {
       else if(count > 3) {
         grid.setCell(i,j,false);
       }
+
+      ifEquals = compareUpdate(grid, cloneGrid, i, j);
+
+      if(ifEquals == false)
+      {
+        countFalse++;
+      }
     }
+  }
+  if(countFalse > 0)
+  {
+    return true; //true means run again
+  }
+
+  else
+  {
+    return false; //if false, do not run again
   }
 }
 

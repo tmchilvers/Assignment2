@@ -28,10 +28,12 @@ Game::~Game()
 void Game::gameLoop() {
   if(returnMode == 1) {
     int count = 0;
-    while(true) {
+    bool loop = true;
+
+    while(loop) {
       cout << "Generation " << count << endl;
       grid->printGrid();
-      mode->update(*grid);
+      loop = mode->update(*grid);
       count++;
       usleep(100000);
     }
@@ -39,12 +41,13 @@ void Game::gameLoop() {
   else if(returnMode == 2) {
     //Enter to update generations
     int count = 0;
-    while(true) {
+    bool loop = true;
+    while(loop) {
       cout << "Generation " << count << endl;
       grid->printGrid();
       cout << "Press Enter to Continue." << endl;
       cin.ignore();
-      mode->update(*grid);
+      loop = mode->update(*grid);
       count++;
     }
 
