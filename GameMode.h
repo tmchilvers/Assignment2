@@ -9,17 +9,17 @@ class GameMode {
 public:
   //ructors
   GameMode(); //default
-  GameMode(int m);
+  GameMode(int m);//overloaded with mode parameter
 
-  bool update(Grid& grid);
-  bool classicUpdate(Grid& grid);
-  bool toroidalUpdate(Grid& grid);
-  bool mirrorUpdate(Grid& grid);
-  bool compareUpdate(Grid& grid, Grid& otherGrid, int i, int j);
+  bool update(Grid& grid);//selects correct update mode based off of private int mode
+  bool classicUpdate(Grid& grid);//updates in classic mode
+  bool toroidalUpdate(Grid& grid);//updates in toroidal mode(donut mode)
+  bool mirrorUpdate(Grid& grid);//updates in mirror mode
+  bool compareUpdate(Grid& grid, Grid& otherGrid, int i, int j);//compares 2 cells for haromny
 
-  int countClassic(Grid& grid, int i, int j);
-  int countToroidal(Grid& grid, int i, int j);
-  int countMirror(Grid& grid, int i, int j);
+  int countClassic(Grid& grid, int i, int j);//counts neighbors in classic mode
+  int countToroidal(Grid& grid, int i, int j);//counts neighbors in donut mode
+  int countMirror(Grid& grid, int i, int j);//counts neighbors in mirror
 
 private:
   int mode;
