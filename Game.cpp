@@ -55,6 +55,20 @@ void Game::gameLoop() {
   }
   else if(returnMode == 3) {
     //output game to file prompted for earlier
+    int count = 0;
+    bool loop = true;
+    ofstream fout;
+    fout.open(outputFileName);
+    if(!fout){
+      exit(EXIT_FAILURE);
+    }
+    while(loop) {
+      fout << "Generation " << count << endl;
+      grid->printGridFile(fout);
+      loop = mode->update(*grid);
+      count++;
+    }
+    fout.close();
   }
   else {
     cout << "An error has occured. Execution terminated." << endl;
