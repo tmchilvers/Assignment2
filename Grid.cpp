@@ -34,8 +34,17 @@ Grid::Grid(string filePath)
   string widthStr;
   getline(mapFile,heightStr);//error checks
   getline(mapFile,widthStr);
-  height = stoi(heightStr); //convert string variables to ints
-  width = stoi(widthStr);
+
+  try
+  {
+    height = stoi(heightStr); //convert string variables to ints
+    width = stoi(widthStr);
+  }
+  catch(const std::invalid_argument& ia)
+  {
+    cerr << "ERROR in file. Invalid argument, please check your file data.\n" << endl;
+    exit(EXIT_FAILURE);
+  }
 
   genGrid(); //Empty grid is generated with given dimensions
   setGrid(mapFile);
@@ -106,7 +115,8 @@ void Grid::setGrid(ifstream& mapFile) //overloaded setGrid function
 
       else
       {
-        //catch/throw error - end program
+        cerr << "ERROR in file. Invalid argument, please check your file data.\n" << endl;
+        exit(EXIT_FAILURE);
       }
     }
   }
@@ -179,16 +189,16 @@ void Grid::printGrid() { //prints grid through std::cout formatted to appear vis
   }
 }
 
-void Grid::printGridFile(ifstream& outFile) { //prints grid through std::cout formatted to appear visually accurate
+void Grid::printGridFile(ofstream& outFile) { //prints grid through std::cout formatted to appear visually accurate
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
       if(gameGrid[i][j]) {
-        cout << "x ";
+        outFile << "x ";
       }
       else if(!gameGrid[i][j]) {
-        cout << "- ";
+        outFile << "- ";
       }
     }
-    cout << endl;
+    outFile << endl;
   }
 }
