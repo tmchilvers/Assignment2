@@ -115,19 +115,19 @@ void Grid::setGrid(ifstream& mapFile) //overloaded setGrid function
 void Grid::setGrid(double density) //populates the grid with random based off density
 {
   //Populate grid randomly
-  srand(time(NULL));
+  srand(time(NULL)); //random seeded with time
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
-      double num = double(rand() % 100)/100;
+      double num = double(rand() % 100)/100; //random double from 0 - 1
 
       if(num > density)
       {
-        gameGrid[i][j] = false;
+        gameGrid[i][j] = false; // if user inp density is greater than rand(), set to false(dead)
       }
 
       else if(num <= density)
       {
-        gameGrid[i][j] = true;
+        gameGrid[i][j] = true; // if user inp density is less than rand(), set to true(alive)
       }
     }
   }
@@ -179,7 +179,7 @@ void Grid::printGrid() { //prints grid through std::cout formatted to appear vis
   }
 }
 
-void Grid::printGridFile(string fileName) { //prints grid through std::cout formatted to appear visually accurate
+void Grid::printGridFile(ifstream& outFile) { //prints grid through std::cout formatted to appear visually accurate
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
       if(gameGrid[i][j]) {
@@ -192,6 +192,3 @@ void Grid::printGridFile(string fileName) { //prints grid through std::cout form
     cout << endl;
   }
 }
-
-
-//note: may need copy constrcutor for shadow thing
