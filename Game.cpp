@@ -97,78 +97,87 @@ void Game::promptGameMode() //prompts user for gamemode
 
 void Game::promptCells() //prompts user for map file or dimensions
 {
-  while(true) {
-    string inputControl;
-    cout << "Would you like to read a map file ('1') or provide dimensions\nand density for a random grid of cells ('2')?" << endl;
-    cout << "1. Read map file." << endl;
-    cout << "2. Provide dimensions and density." << endl;
-    getline(cin,inputControl);
-    if(inputControl == "2") {
+  string inputControl;
+  cout << "Would you like to read a map file ('1') or provide dimensions\nand density for a random grid of cells ('2')?" << endl;
+  cout << "1. Read map file." << endl;
+  cout << "2. Provide dimensions and density." << endl;
+  getline(cin,inputControl);
+  if(inputControl == "2") {
 
-      cout << "Height:\n";
-      //prompt for height as str and convert to int
-      string heightStr;
-      getline(cin,heightStr);
-      int height = stoi(heightStr);//will cause error if not num
+    cout << "Height:\n";
+    //prompt for height as str and convert to int
+    int height;
+    cin >> height;
 
-      //prompt for width as str and convert to int
-      cout << "Width:\n";
-      string widthStr;
-      getline(cin,widthStr);
-      int width = stoi(widthStr);
-
-      //prompt for density as str and convert to int
-      cout << "Population Density:\n";
-      string densityStr;
-      getline(cin,densityStr);
-      double density = stod(densityStr);
-
-      grid = new Grid(height,width,density);
-      break;
+    if (cin.fail())
+    {
+      cerr << "ERROR Invalid input. Exit Program." << endl;
+      exit(EXIT_FAILURE);
     }
-    else if (inputControl == "1") {
-      grid = new Grid(promptFileName());
-      break;
-    }
-    else {
-      //catch errors
-      cout << "Invalid input." << endl;
 
+    //prompt for width as str and convert to int
+    cout << "Width:\n";
+    int width;
+    cin >> width;
+
+    if (cin.fail())
+    {
+      cerr << "ERROR Invalid input. Exit Program." << endl;
+      exit(EXIT_FAILURE);
     }
+
+    //prompt for density as str and convert to int
+    cout << "Population Density:\n";
+    double density;
+    cin >> density;
+
+    if (cin.fail())
+    {
+      cerr << "ERROR Invalid input. Exit Program." << endl;
+      exit(EXIT_FAILURE);
+    }
+
+    grid = new Grid(height,width,density);
+  }
+  else if (inputControl == "1") {
+    grid = new Grid(promptFileName());
+  }
+  else
+  {
+    cerr << "ERROR Invalid input. Exit Program." << endl;
+    exit(EXIT_FAILURE);
   }
 }
 
 void Game::promptOutput() //Prompts how the user would like game outputted
 {
-  while(true) {
-    string outputControl;
-    cout << "How do you want this game outputted for you?" << endl;
-    cout << "If you want to have a brief pause between each generation, enter '1': " << endl;
-    cout << "If you want to press the enter key for each generation to appear, enter '2': " << endl;
-    cout << "If you want to output everything to a file, enter '3': " << endl;
-    getline(cin,outputControl);
-    if(outputControl == "1")
-    {
-      returnMode = 1;
-      break;
-    }
+  int outputControl;
+  cout << "How do you want this game outputted for you?" << endl;
+  cout << "If you want to have a brief pause between each generation, enter '1': " << endl;
+  cout << "If you want to press the enter key for each generation to appear, enter '2': " << endl;
+  cout << "If you want to output everything to a file, enter '3': " << endl;
 
-    else if(outputControl == "2")
-    {
-      returnMode = 2;
-      break;
-    }
+  cin >> outputControl;
+  if (cin.fail())
+  {
+    cerr << "ERROR Invalid input. Exit Program." << endl;
+    exit(EXIT_FAILURE);
+  }
 
-    else if(outputControl == "3")
-    {
-      returnMode = 3;
-      outputFileName = promptFileName();
-      break;
-    }
-    else {
-      //catch errors
-      cout << "Invalid input." << endl;
-    }
+  if(outputControl == 1)
+  {
+    returnMode = 1;
+  }
+
+  else if(outputControl == 2)
+  {
+    returnMode = 2;
+  }
+
+  else if(outputControl == 3)
+  {
+    returnMode = 3;
+    outputFileName = promptFileName();
   }
 }
 
