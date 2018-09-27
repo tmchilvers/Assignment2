@@ -11,7 +11,7 @@
 //Constructors
 Game::Game() //default constructor
 {
-  promptGameMode();
+  promptGameMode(); //constructor calls all methods for gameplay
   promptCells();
   promptOutput();
   gameLoop();
@@ -20,13 +20,14 @@ Game::Game() //default constructor
 
 Game::~Game()
 {
-
+  delete grid;
+  delete mode;
 }
 
 
 //Main Loop
 void Game::gameLoop() {
-  if(returnMode == 1) {
+  if(returnMode == 1) { //Game will loop on its own until termination
     int count = 0;
     bool loop = true;
 
@@ -42,7 +43,7 @@ void Game::gameLoop() {
     //Enter to update generations
     int count = 0;
     bool loop = true;
-    while(loop) {
+    while(loop) { //Game will loop when enter is pressed until termination
       cout << "Generation " << count << endl;
       grid->printGrid();
       cout << "Press Enter to Continue." << endl;
@@ -53,7 +54,7 @@ void Game::gameLoop() {
 
   }
   else if(returnMode == 3) {
-    //output game to file
+    //output game to file prompted for earlier
   }
   else {
     cout << "An error has occured. Execution terminated." << endl;
@@ -62,95 +63,121 @@ void Game::gameLoop() {
 
 
 
-void Game::promptGameMode()
+void Game::promptGameMode() //prompts user for gamemode
 {
-  int gameModeControl;
-  cout << "What mode would you like to play in: " << endl;
-  cout << "1. classic" << endl;
-  cout << "2. donut" << endl;
-  cout << "3. mirror" << endl;
-  cin >> gameModeControl;
-  if(gameModeControl == 1) {
-    mode = new GameMode;
-    cout << "Classic mode selected!" << endl;
-  }
-  else if(gameModeControl == 2) {
-    mode = new GameMode(1);
-    cout << "Donut mode selected!" << endl;
-  }
-  else if(gameModeControl == 3) {
-    mode = new GameMode(2);
-    cout << "Classic mode selected!" << endl;
-  }
-  else {
-    //catch errors
-    cout << "Invalid input." << endl;
-    //promptGameMode();
+  while(true){
+    string gameModeControl;
+    cout << "What mode would you like to play in: " << endl;
+    cout << "1. classic" << endl;
+    cout << "2. donut" << endl;
+    cout << "3. mirror" << endl;
+    getline(cin,gameModeControl);
+    if(gameModeControl == "1") {
+      mode = new GameMode;
+      cout << "Classic mode selected!" << endl;
+      break;
+    }
+    else if(gameModeControl == "2") {
+      mode = new GameMode(1);
+      cout << "Donut mode selected!" << endl;
+      break;
+    }
+    else if(gameModeControl == "3") {
+      mode = new GameMode(2);
+      cout << "Classic mode selected!" << endl;
+      break;
+    }
+    else {
+      //catch errors
+      cout << "Invalid input." << endl;
+
+    }
   }
 }
 
-void Game::promptCells()
+void Game::promptCells() //prompts user for map file or dimensions
 {
-  int inputControl;
-  cout << "Would you like to read a map file ('1') or provide dimensions\nand density for a random grid of cells ('2')?" << endl;
-  cout << "1. Read map file." << endl;
-  cout << "2. Provide dimensions and density." << endl;
-  cin >> inputControl;
+  while(true) {
+    string inputControl;
+    cout << "Would you like to read a map file ('1') or provide dimensions\nand density for a random grid of cells ('2')?" << endl;
+    cout << "1. Read map file." << endl;
+    cout << "2. Provide dimensions and density." << endl;
+    getline(cin,inputControl);
+    if(inputControl == "2") {
 
-  if(inputControl == 2) {
-    cout << "Height:\n";
-    int height;
-    cin >> height;
-    cout << "Width:\n";
-    int width;
-    cin >> width;
-    cout << "Population Density:\n";
-    double density;
-    cin >> density;
-    grid = new Grid(height,width,density);
-  }
-  else if (inputControl == 1) {
-    grid = new Grid(promptFileName());
-  }
-  else {
-    //catch errors
-    cout << "Invalid input." << endl;
-    //promptCells();
+      cout << "Height:\n";
+      //prompt for height as str and convert to int
+      string heightStr;
+      getline(cin,heightStr);
+      int height = stoi(heightStr);//will cause error if not num
+
+      //prompt for width as str and convert to int
+      cout << "Width:\n";
+      string widthStr;
+      getline(cin,widthStr);
+      int width = stoi(widthStr);
+
+      //prompt for density as str and convert to int
+      cout << "Population Density:\n";
+      string densityStr;
+      getline(cin,densityStr);
+      double density = stod(densityStr);
+
+      grid = new Grid(height,width,density);
+      break;
+    }
+    else if (inputControl == "1") {
+      grid = new Grid(promptFileName());
+      break;
+    }
+    else {
+      //catch errors
+      cout << "Invalid input." << endl;
+
+    }
   }
 }
 
-void Game::promptOutput()
+void Game::promptOutput() //Prompts how the user would like game outputted
 {
-  int outputControl;
-  cout << "How do you want this game outputted for you?" << endl;
-  cout << "If you want to have a brief pause between each generation, enter '1': " << endl;
-  cout << "If you want to press the enter key for each generation to appear, enter '2': " << endl;
-  cout << "If you want to output everything to a file, enter '3': " << endl;
-  cin >> outputControl;
+  while(true) {
+    string outputControl;
+    cout << "How do you want this game outputted for you?" << endl;
+    cout << "If you want to have a brief pause between each generation, enter '1': " << endl;
+    cout << "If you want to press the enter key for each generation to appear, enter '2': " << endl;
+    cout << "If you want to output everything to a file, enter '3': " << endl;
+    getline(cin,outputControl);
+    if(outputControl == "1")
+    {
+      returnMode = 1;
+      break;
+    }
 
-  if(outputControl == 1)
-  {
-    returnMode = 1;
-  }
+    else if(outputControl == "2")
+    {
+      returnMode = 2;
+      break;
+    }
 
-  else if(outputControl == 2)
-  {
-    returnMode = 2;
-  }
-
-  else if(outputControl == 3)
-  {
-    returnMode = 3;
-    outputFileName = promptFileName();
+    else if(outputControl == "3")
+    {
+      returnMode = 3;
+      outputFileName = promptFileName();
+      break;
+    }
+    else {
+      //catch errors
+      cout << "Invalid input." << endl;
+    }
   }
 }
 
-string Game::promptFileName()
+string Game::promptFileName() //prompts the user for a file path
 {
   while(true) {
     string fileName;
     cout << "\nWhat is the name of the file?: " << endl;
-    cin >> fileName;
+    getline(cin,fileName);
     //Check to make sure file exists
     ifstream f;
     f.open(fileName);

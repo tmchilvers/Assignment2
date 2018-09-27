@@ -14,10 +14,10 @@ class Game
 {
   private:
     //instance variables
-    GameMode *mode; //maybe pointer?
-    Grid *grid; //maybe pointer?
-    int returnMode;
-    string outputFileName;
+    GameMode *mode; //gamemode class for updating grid each generation
+    Grid *grid; //grid class to contain grid
+    int returnMode; //whether game is returned with usleep, by pressing enter, or to a file
+    string outputFileName; //path to output file
 
   public:
     //Constructors
@@ -26,14 +26,12 @@ class Game
     ~Game();
 
     //Mutator Functions
-    void promptGameMode();
-    void promptCells();
-    void promptOutput();
-    string promptFileName();
+    void promptGameMode();//asks the user what gamemode they want and creates mode object
+    void promptCells();//asks the user how they'd like to populate the grid
+    void promptOutput();//asks the user how the game should be returned
+    string promptFileName();//prompts for a file name and returns it as a string
 
-    void printGen();
-    void printGridEnter();
-    void gameLoop();
+    void gameLoop();//runs game
 
 };
 

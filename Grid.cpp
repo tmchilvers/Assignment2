@@ -32,7 +32,7 @@ Grid::Grid(string filePath)
   //read in the height and width
   string heightStr; //Arbitrary strings because getline requires an std::string for second arg
   string widthStr;
-  getline(mapFile,heightStr);
+  getline(mapFile,heightStr);//error checks
   getline(mapFile,widthStr);
   height = stoi(heightStr); //convert string variables to ints
   width = stoi(widthStr);
