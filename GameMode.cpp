@@ -10,18 +10,18 @@ GameMode::GameMode() { //default
   mode = 0;
 }
 
-GameMode::GameMode(int m) {
+GameMode::GameMode(int m) {//Creates gamemode with m as the mode(0 = classic, 1 = donut, 2 = mirror)
   mode = m;
 }
 
 
 bool GameMode::compareUpdate(Grid& grid, Grid& otherGrid, int i, int j)
-{
+{ //Takes 2 grids and coords as input and returns true if compared sells are both alive or both dead
   return grid.getCell(i,j) == otherGrid.getCell(i,j);
 }
 
-bool GameMode::update(Grid& grid) {
-  if (mode == 0) {
+bool GameMode::update(Grid& grid) {//selects appropriate update func based off mode var
+  if (mode == 0) { //returns true
     return classicUpdate(grid);
   }
   else if (mode == 1) {
@@ -34,16 +34,16 @@ bool GameMode::update(Grid& grid) {
     //error checking
   }
 }
-bool GameMode::classicUpdate(Grid& grid) {
+bool GameMode::classicUpdate(Grid& grid) {//updates a grid in classic mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
   int countFalse = 0;
 
   for(int i = 0; i < grid.getHeight(); i++) {
     for(int j = 0; j < grid.getWidth(); j++) {
-      int count = countClassic(cloneGrid,i,j);
+      int count = countClassic(cloneGrid,i,j);//checks cells in cloned grid
       if(count < 2) {
-        grid.setCell(i,j,false);
+        grid.setCell(i,j,false);//updates cells on original grid
       }
       else if(count == 3) {
         grid.setCell(i,j,true);
@@ -52,8 +52,8 @@ bool GameMode::classicUpdate(Grid& grid) {
         grid.setCell(i,j,false);
       }
       ifEquals = compareUpdate(grid, cloneGrid, i, j);
-
-      if(ifEquals == false)
+//ifEquals remains true if cell remains unchanged
+      if(ifEquals == false)//if at any point ifEquals becomes false, the grids are different and another update will be needed
       {
         countFalse++;
       }
@@ -69,7 +69,7 @@ bool GameMode::classicUpdate(Grid& grid) {
     return false; //if false, do not run again
   }
 }
-bool GameMode::toroidalUpdate(Grid& grid) {
+bool GameMode::toroidalUpdate(Grid& grid) { //works identical to classicUpdate but in donut mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
   int countFalse = 0;
@@ -105,7 +105,7 @@ bool GameMode::toroidalUpdate(Grid& grid) {
     return false; //if false, do not run again
   }
 }
-bool GameMode::mirrorUpdate(Grid& grid) {
+bool GameMode::mirrorUpdate(Grid& grid) { //works identical to classicUpdate but in mirror mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
   int countFalse = 0;
@@ -143,8 +143,10 @@ bool GameMode::mirrorUpdate(Grid& grid) {
 }
 
 int GameMode::countClassic(Grid& grid, int i, int j) {
+  //If cell is an edge or corner, it is handled specifically based off of location
+  //If cell is not an edge or corner, the 8 surroudning are counted
   int count = 0;
-  if(i==0 ||
+  if(i==0 || //checks if current cell is a corner or edge cell
      i==grid.getHeight()-1 ||
      j==0 ||
      j==grid.getWidth()-1) {
@@ -310,6 +312,10 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
 }
 
 int GameMode::countToroidal(Grid& grid, int i, int j) {
+  //array wrap around created using modulus
+  //Aside from that, surrounding 8 cells are counted normally
+  //% in c++ acts as a remainder instead of traditional modulus
+  //that is handled through if/else if/else
   int count = 0;
   if (i == 0 && j == 0) {
     if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
@@ -451,6 +457,8 @@ return count;
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {
+  //If cell is an edge or corner, it is handled specifically based off of location
+  //If cell is not an edge or corner, the 8 surroudning are counted
   int count = 0;
   if(i==0 ||
      i==grid.getHeight()-1 ||
