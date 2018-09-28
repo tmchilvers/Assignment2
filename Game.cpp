@@ -113,7 +113,7 @@ void Game::promptGameMode() //prompts user for gamemode
     }
     else if(gameModeControl == "3") {
       mode = new GameMode(2);
-      cout << "\nClassic mode selected!\n" << endl;
+      cout << "\nMirror mode selected!\n" << endl;
       break;
     }
     else {
