@@ -8,14 +8,13 @@
 #include "Grid.h"
 #include "GameMode.h"
 
-//Constructors
+//Constructors==================================================================
 Game::Game() //default constructor
 {
   promptGameMode(); //constructor calls all methods for gameplay
   promptCells();
   promptOutput();
   gameLoop();
-
 }
 
 Game::~Game()
@@ -24,7 +23,7 @@ Game::~Game()
   delete mode;
 }
 
-
+//Auxiliary functions===========================================================
 //Main Loop
 void Game::gameLoop() {
   if(returnMode == 1) { //Game will loop on its own until termination
@@ -38,6 +37,9 @@ void Game::gameLoop() {
       count++;
       usleep(100000);
     }
+    cout << "Press Enter to Continue." << endl;
+    cin.ignore();
+    cin.ignore();
   }
   else if(returnMode == 2) {
     //Enter to update generations
@@ -47,6 +49,10 @@ void Game::gameLoop() {
       cout << "Generation " << count << endl;
       grid->printGrid();
       cout << "Press Enter to Continue." << endl;
+      if(count == 0)
+      {
+        cin.ignore();
+      }
       cin.ignore();
       loop = mode->update(*grid);
       count++;
@@ -62,6 +68,9 @@ void Game::gameLoop() {
     if(!fout){
       exit(EXIT_FAILURE);
     }
+
+    cout << "Outputting Game to File." << endl;
+
     while(loop) {
       fout << "Generation " << count << endl;
       grid->printGridFile(fout);
@@ -69,12 +78,16 @@ void Game::gameLoop() {
       count++;
     }
     fout.close();
+
+    cout << "File has been created. Please look for file in your directory." << endl;
+    cout << "Press Enter to Continue." << endl;
+    cin.ignore();
+    cin.ignore();
   }
   else {
     cout << "An error has occured. Execution terminated." << endl;
   }
 }
-
 
 
 void Game::promptGameMode() //prompts user for gamemode
@@ -85,26 +98,27 @@ void Game::promptGameMode() //prompts user for gamemode
     cout << "1. classic" << endl;
     cout << "2. donut" << endl;
     cout << "3. mirror" << endl;
+
     getline(cin,gameModeControl);
+
     if(gameModeControl == "1") {
       mode = new GameMode;
-      cout << "Classic mode selected!" << endl;
+      cout << "\nClassic mode selected!\n" << endl;
       break;
     }
     else if(gameModeControl == "2") {
       mode = new GameMode(1);
-      cout << "Donut mode selected!" << endl;
+      cout << "\nDonut mode selected!\n" << endl;
       break;
     }
     else if(gameModeControl == "3") {
       mode = new GameMode(2);
-      cout << "Classic mode selected!" << endl;
+      cout << "\nClassic mode selected!\n" << endl;
       break;
     }
     else {
       //catch errors
-      cout << "Invalid input." << endl;
-
+      cout << "\nInvalid input." << endl;
     }
   }
 }
@@ -166,7 +180,7 @@ void Game::promptCells() //prompts user for map file or dimensions
 void Game::promptOutput() //Prompts how the user would like game outputted
 {
   int outputControl;
-  cout << "How do you want this game outputted for you?" << endl;
+  cout << "\nHow do you want this game outputted for you?" << endl;
   cout << "If you want to have a brief pause between each generation, enter '1': " << endl;
   cout << "If you want to press the enter key for each generation to appear, enter '2': " << endl;
   cout << "If you want to output everything to a file, enter '3': " << endl;
@@ -191,7 +205,7 @@ void Game::promptOutput() //Prompts how the user would like game outputted
   else if(outputControl == 3)
   {
     returnMode = 3;
-    outputFileName = promptFileName();
+    outputFileName = outFileName();
   }
 }
 
@@ -212,4 +226,13 @@ string Game::promptFileName() //prompts the user for a file path
       cout << "File not found. Try again." << endl;
     }
   }
+}
+
+string Game::outFileName()
+{
+  string fileName;
+  cout << "\nWhat is the name of the file?: " << endl;
+  cin >> fileName;
+
+  return fileName;
 }

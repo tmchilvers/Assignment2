@@ -7,7 +7,7 @@
 
 using namespace std;
 
-//Constructors =======================================================
+//Constructors =================================================================
 
 Grid::Grid() //default
 {
@@ -71,7 +71,7 @@ Grid::~Grid() { //destructor initially deleted inner arrays then finally main ar
 }
 
 
-//mutator methods ====================================================
+//Auxiliary methods ===============================================================
 void Grid::setHeight(int h) {
   height = h;
 }
@@ -164,7 +164,6 @@ void Grid::setGrid() //default setGrid populates the grid with random true and f
   }
 }
 
-//Accessors ==========================================================
 bool Grid::getCell(int i, int j) {
   return gameGrid[i][j];
 }
@@ -193,7 +192,7 @@ void Grid::printGridFile(ofstream& outFile) { //prints grid through std::cout fo
   for(int i = 0; i < height; i++) {
     for(int j = 0; j < width; j++) {
       if(gameGrid[i][j]) {
-        outFile << "x ";
+        outFile << "X ";
       }
       else if(!gameGrid[i][j]) {
         outFile << "- ";

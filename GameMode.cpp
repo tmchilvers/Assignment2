@@ -3,9 +3,7 @@
 
 using namespace std;
 
-
-
-//constructors
+//Constructors==================================================================
 GameMode::GameMode() { //default
   mode = 0;
 }
@@ -15,6 +13,7 @@ GameMode::GameMode(int m) {//Creates gamemode with m as the mode(0 = classic, 1 
 }
 
 
+//Auxiliary methods=============================================================
 bool GameMode::compareUpdate(Grid& grid, Grid& otherGrid, int i, int j)
 { //Takes 2 grids and coords as input and returns true if compared sells are both alive or both dead
   return grid.getCell(i,j) == otherGrid.getCell(i,j);
@@ -34,6 +33,7 @@ bool GameMode::update(Grid& grid) {//selects appropriate update func based off m
     //error checking
   }
 }
+
 bool GameMode::classicUpdate(Grid& grid) {//updates a grid in classic mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
@@ -69,6 +69,7 @@ bool GameMode::classicUpdate(Grid& grid) {//updates a grid in classic mode
     return false; //if false, do not run again
   }
 }
+
 bool GameMode::toroidalUpdate(Grid& grid) { //works identical to classicUpdate but in donut mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
@@ -105,6 +106,7 @@ bool GameMode::toroidalUpdate(Grid& grid) { //works identical to classicUpdate b
     return false; //if false, do not run again
   }
 }
+
 bool GameMode::mirrorUpdate(Grid& grid) { //works identical to classicUpdate but in mirror mode
   Grid cloneGrid(grid);
   bool ifEquals = true;
@@ -259,7 +261,6 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       }
       return count;
     }
-
     //bottom row
     else if(i==grid.getHeight()-1) {
       if(grid.getCell(i,j+1)) {
@@ -279,7 +280,6 @@ int GameMode::countClassic(Grid& grid, int i, int j) {
       }
       return count;
     }
-
   }
   //non-edges
   else {
@@ -351,6 +351,7 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
       count++;
     }
   }
+
   else if(i == 0) {
     if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
 
@@ -385,6 +386,7 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
       count++;
     }
   }
+
   else if(j == 0) {
     if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
 
@@ -419,6 +421,7 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
       count++;
     }
   }
+
   else {
     if (grid.getCell(((i+1)%grid.getHeight()),(j%grid.getWidth()))) {
 
@@ -453,7 +456,7 @@ int GameMode::countToroidal(Grid& grid, int i, int j) {
       count++;
     }
   }
-return count;
+  return count;
 }
 
 int GameMode::countMirror(Grid& grid, int i, int j) {
@@ -594,7 +597,6 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       }
       return count;
     }
-
     //bottom row
     else if(i==grid.getHeight()-1) {
       if(grid.getCell(i,j+1)) {
@@ -617,7 +619,6 @@ int GameMode::countMirror(Grid& grid, int i, int j) {
       }
       return count;
     }
-
   }
   //non-edges
   else {

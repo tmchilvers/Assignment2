@@ -30,9 +30,9 @@ class Game
     void promptCells();//asks the user how they'd like to populate the grid
     void promptOutput();//asks the user how the game should be returned
     string promptFileName();//prompts for a file name and returns it as a string
+    string outFileName();//prompts for a file name to output data to
 
     void gameLoop();//runs game
-
 };
 
 #endif

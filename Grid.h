@@ -35,7 +35,7 @@ class Grid
     int getWidth();
     bool getCell(int i, int j);
     void printGrid(); // prints grid to standard out
-    void printGridFile(ifstream& outFile); // attempts to print grid to outFile
+    void printGridFile(ofstream& outFile); // attempts to print grid to outFile
 
   private:
     bool **gameGrid;
