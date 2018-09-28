@@ -155,7 +155,7 @@ void Game::promptCells() //prompts user for map file or dimensions
     }
 
     //prompt for density as str and convert to int
-    cout << "Population Density:\n";
+    cout << "Population Density (Decimal between 0 and 1):\n";
     double density;
     cin >> density;
 
