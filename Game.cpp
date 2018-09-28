@@ -164,6 +164,11 @@ void Game::promptCells() //prompts user for map file or dimensions
       cerr << "ERROR Invalid input. Exit Program." << endl;
       exit(EXIT_FAILURE);
     }
+    //check for int between 0 and 1
+    if(density > 1 || density < 0) {
+      cerr << "ERROR Invalid input. Exit Program." << endl;
+      exit(EXIT_FAILURE);
+    }
 
     grid = new Grid(height,width,density);
   }
